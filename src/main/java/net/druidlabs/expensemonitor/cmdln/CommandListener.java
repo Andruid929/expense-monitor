@@ -16,8 +16,6 @@ import static net.druidlabs.expensemonitor.cmdln.Commands.*;
 
 public abstract class CommandListener {
 
-    private static Future<String> process;
-
     public static void launch(Scanner scanner) {
         String command = scanner.next();
 
@@ -43,9 +41,9 @@ public abstract class CommandListener {
     }
 
     private static void allLoggedExpenses(Scanner scanner) {
+        System.out.println();
         Manager.getAllExpenses();
 
-        System.out.println();
         askForCommand();
         launch(scanner);
     }
@@ -61,12 +59,12 @@ public abstract class CommandListener {
         System.out.print("\nExiting expense manager");
 
         try (ExecutorService service = Executors.newSingleThreadExecutor()) {
-            process = service.submit(() -> {
+            Future<String> process = service.submit(() -> {
                 Thread.sleep(2500);
                 return "______________________";
             });
 
-            SaveExpenses.createSave(Expenses.getExpenses());
+            SaveExpenses.createSave();
 
             while (!process.isDone()) {
                 System.out.print(".");
@@ -74,7 +72,9 @@ public abstract class CommandListener {
             }
 
             System.out.println("\n\n" + process.get(1000, TimeUnit.MILLISECONDS));
-        } catch (InterruptedException | ExecutionException | TimeoutException | IOException _) {
+        } catch (InterruptedException | ExecutionException | TimeoutException | IOException e) {
+            System.out.println("\n");
+            e.printStackTrace(System.err);
         }
     }
 
@@ -156,14 +156,15 @@ public abstract class CommandListener {
         }
 
         while (amount < 1) {
-            System.out.print("Expense has to be more than that, come on. Type '-1' to cancel");
-            amount = scanner.nextInt();
-
             if (amount == NUM_CANCEL) {
+                System.out.println();
                 askForCommand();
                 launch(scanner);
                 return;
             }
+
+            System.out.println("\nExpense has to be more than that, come on. Type '-1' to cancel");
+            amount = scanner.nextInt();
         }
 
         scanner.nextLine();
@@ -181,7 +182,8 @@ public abstract class CommandListener {
     }
 
     private static void unknownCommand(String command, Scanner scanner) {
-        System.out.println("'" + command + "' is not a registered command, type 'HELP' or 'H' for a list of registered commands.");
+        System.out.println("\n'" + command + "' is not a registered command, type 'HELP' or 'H' for a list of registered commands.");
+        System.out.println();
         askForCommand();
         launch(scanner);
     }

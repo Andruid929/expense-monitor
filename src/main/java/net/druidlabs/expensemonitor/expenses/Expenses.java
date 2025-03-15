@@ -1,11 +1,12 @@
 package net.druidlabs.expensemonitor.expenses;
 
-import java.util.ArrayList;
+import net.druidlabs.expensemonitor.io.LoadExpenses;
+
 import java.util.List;
 
 public final class Expenses {
 
-    static final List<Expense> expenses = new ArrayList<>();
+    static final List<Expense> expenses = LoadExpenses.loadExpenses();
 
     private Expenses() {}
 

@@ -21,12 +21,12 @@ public abstract class Manager {
 
     public static void clearHistory() {
         if (expenses.isEmpty()) {
-            System.out.println("No expenses logged\n");
+            System.out.println("\nNo expenses logged");
             return;
         }
 
         Expenses.expenses.clear();
-        System.out.println("Cleared all expenses");
+        System.out.println("\nCleared all expenses");
     }
 
     public static void deleteExpense(String description) throws ConcurrentModificationException {

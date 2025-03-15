@@ -1,50 +1,25 @@
 package net.druidlabs.expensemonitor.io;
 
-import net.druidlabs.expensemonitor.Constants;
-import net.druidlabs.expensemonitor.expenses.Expense;
+import net.druidlabs.expensemonitor.expenses.Expenses;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.io.ObjectOutputStream;
+
+import static net.druidlabs.expensemonitor.Constants.SAVE_FILE;
+import static net.druidlabs.expensemonitor.Constants.SAVE_FOLDER;
 
 public final class SaveExpenses {
 
-    private static final File saveFolder = new File(Constants.DEFAULT_SAVE_FOLDER);
-
-    private static int number;
-
-    public static void createSave(List<Expense> expenses) throws IOException {
-
-        if (!saveFolder.exists()) {
-            boolean _ = saveFolder.mkdir();
+    public static void createSave() throws IOException {
+        if (!SAVE_FOLDER.exists()) {
+            boolean _ = SAVE_FOLDER.mkdir();
+            boolean _ = SAVE_FILE.createNewFile();
         }
 
-        if (expenses.isEmpty()) {
-            return;
-        }
-
-        for (Expense expense : expenses) {
-            number++;
-
-            String desc = expense.description();
-            int amount = expense.amount();
-            String month = expense.getMonth();
-            String date = expense.getDate();
-
-            File file = new File(Constants.DEFAULT_SAVE_FOLDER + expense.description().substring(0, 3) + number + ".exp");
-
-            boolean _ = file.createNewFile();
-
-            try (FileWriter fw = new FileWriter(file);
-                 BufferedWriter writer = new BufferedWriter(fw)) {
-
-                writer.write(desc + "\r\n");
-                writer.write(amount + "\r\n");
-                writer.write(month + "\r\n");
-                writer.write(formatDate(date, month));
-            }
+        try (FileOutputStream fos = new FileOutputStream(SAVE_FILE);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(Expenses.getExpenses());
         }
     }
 
