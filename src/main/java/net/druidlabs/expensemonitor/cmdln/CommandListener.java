@@ -2,7 +2,6 @@ package net.druidlabs.expensemonitor.cmdln;
 
 import net.druidlabs.expensemonitor.calendar.TimeFunctions;
 import net.druidlabs.expensemonitor.expenses.Expense;
-import net.druidlabs.expensemonitor.expenses.Expenses;
 import net.druidlabs.expensemonitor.expenses.Manager;
 import net.druidlabs.expensemonitor.io.SaveExpenses;
 
