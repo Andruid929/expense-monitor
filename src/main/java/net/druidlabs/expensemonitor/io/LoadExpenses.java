@@ -17,6 +17,7 @@ public class LoadExpenses {
         try (FileInputStream fis = new FileInputStream(SAVE_FILE);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             return (List<Expense>) ois.readObject();
+
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
         }
