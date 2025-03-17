@@ -14,4 +14,18 @@ public final class Expenses {
         return expenses;
     }
 
+    public static int getTotalAmountSpent() {
+        int amountSpent = 0;
+
+        if (expenses.isEmpty()) {
+            return amountSpent;
+        }
+
+        for (Expense expense : expenses) {
+            amountSpent += expense.amount();
+        }
+
+        return amountSpent;
+    }
+
 }

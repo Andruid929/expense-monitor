@@ -1,8 +1,9 @@
 package net.druidlabs.expensemonitor.expenses;
 
-import net.druidlabs.expensemonitor.Constants;
+import net.druidlabs.expensemonitor.io.IOConstants;
 import net.druidlabs.expensemonitor.calendar.InvalidDayException;
 import net.druidlabs.expensemonitor.calendar.TimeFunctions;
+import net.druidlabs.expensemonitor.values.Strings;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -45,7 +46,7 @@ public class Expense implements Serializable {
 
         minute = time.getMinute();
 
-        if (description.equals(Constants.TEST_DESC)) { //This description is used in testing and shouldn't be added to the expense list
+        if (description.equals(Strings.TEST_DESC)) { //This description is used in testing and shouldn't be added to the expense list
             return;
         }
         Expenses.expenses.add(this);

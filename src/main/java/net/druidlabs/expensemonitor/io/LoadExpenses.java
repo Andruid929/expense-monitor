@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.druidlabs.expensemonitor.Constants.SAVE_FILE;
+import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FILE;
 
 public class LoadExpenses {
 

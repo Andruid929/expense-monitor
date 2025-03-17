@@ -5,18 +5,10 @@ import java.util.List;
 
 public abstract class Manager {
 
-    private static int amountSpent;
-
     private static final List<Expense> expenses = Expenses.getExpenses();
 
     public static void increaseAmountSpent(Expense expense) {
-        amountSpent += expense.amount();
-
-        System.out.println("New expense logged on " + expense.getDate() + " at " + expense.getTime());
-    }
-
-    public static int getAmountSpent() {
-        return amountSpent;
+        System.out.println("\nNew expense logged on " + expense.getDate() + " at " + expense.getTime());
     }
 
     public static void clearHistory() {
@@ -57,12 +49,15 @@ public abstract class Manager {
             return;
         }
 
-        expenses.forEach(expense -> {
-            if (expense.getMonth().toLowerCase().startsWith(month.toLowerCase().substring(0, 3))) {
-                System.out.println("Expense: " + expense.amount() + "\nDescription: " + expense.description() + "\nDate: " + expense.getDate() + " | " +
-                        expense.getTime() + "\n");
-            }
-        });
+        List<Expense> monthExpenses = expenses.stream().filter(expense -> expense.getMonth().substring(0,3).equalsIgnoreCase(month.substring(0,3))).toList();
+
+        if (monthExpenses.isEmpty()) {
+            System.out.println("No expenses logged in this month\n");
+            return;
+        }
+
+        monthExpenses.forEach(expense -> System.out.println("Expense: " + expense.amount() + "\nDescription: " + expense.description() +
+                "\nDate: " + expense.getDate() + " | " + expense.getTime() + "\n"));
     }
 
 }

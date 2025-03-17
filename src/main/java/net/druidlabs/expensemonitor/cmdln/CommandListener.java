@@ -2,6 +2,7 @@ package net.druidlabs.expensemonitor.cmdln;
 
 import net.druidlabs.expensemonitor.calendar.TimeFunctions;
 import net.druidlabs.expensemonitor.expenses.Expense;
+import net.druidlabs.expensemonitor.expenses.Expenses;
 import net.druidlabs.expensemonitor.expenses.Manager;
 import net.druidlabs.expensemonitor.io.SaveExpenses;
 
@@ -48,7 +49,7 @@ public abstract class CommandListener {
     }
 
     private static void totalSpent(Scanner scanner) {
-        System.out.println("\nTotal spent: " + Manager.getAmountSpent() + "\n");
+        System.out.println("\nTotal spent: " + Expenses.getTotalAmountSpent() + "\n");
 
         askForCommand();
         launch(scanner);
@@ -117,7 +118,8 @@ public abstract class CommandListener {
             System.out.println();
             Manager.getMonthExpenses(month);
         } else {
-            System.out.println("Invalid month!");
+            System.out.println("\nInvalid month!");
+            System.out.println();
         }
 
         askForCommand();
@@ -126,13 +128,13 @@ public abstract class CommandListener {
 
     private static void printCommandList(Scanner scanner) {
         System.out.print("\n'" + HELP + "' or 'HELP' for a list of commands" + "\n");
-        System.out.print("'" + ADD + "' or 'ADD' to log a new expense" + "\n");
-        System.out.print("'" + MONTH_SUMMARY + "' or 'MON SUM' to get expenses logged within a specified month" + "\n");
+        System.out.print("'" + ADD + "' or 'ADD' to log down a new expense" + "\n");
+        System.out.print("'" + MONTH_SUMMARY + "' or 'MON SUM' to get expenses logged within a specific month" + "\n");
         System.out.print("'" + REMOVE + " or 'REMOVE' to remove a specific expense" + "\n");
-        System.out.print("'" + TOTAL + " or 'TOTAL' to the total amount of expenses" + "\n");
+        System.out.print("'" + TOTAL + " or 'TOTAL' to get the total amount of money spent" + "\n");
         System.out.print("'" + GET_ALL + "' or 'GET ALL' to get all saved expenses" + "\n");
         System.out.print("'" + CLEAR + "' or 'CLEAR' to clear out all saved expenses" + "\n");
-        System.out.println("'" + EXIT + "' or 'EXIT' to exit the expense manager" + "\n");
+        System.out.println("'" + EXIT + "' or 'EXIT' to save changes then exit the expense manager" + "\n");
 
         askForCommand();
         launch(scanner);

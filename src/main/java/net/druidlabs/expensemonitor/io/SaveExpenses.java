@@ -6,8 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import static net.druidlabs.expensemonitor.Constants.SAVE_FILE;
-import static net.druidlabs.expensemonitor.Constants.SAVE_FOLDER;
+import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FILE;
+import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FOLDER;
 
 public final class SaveExpenses {
 
