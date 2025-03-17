@@ -10,7 +10,7 @@ If at any time during a prompt you want to cancel, `CANCEL` will do the trick, i
 Commands are not case sensitive
 
 ### Help
-`HELP``
+`HELP`
 This command will show you all the commands you can use with this program, simple enough yeah?
 
 ### Adding a new expense
