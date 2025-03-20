@@ -1,6 +1,5 @@
 package net.druidlabs.expensemonitor.expenses;
 
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public abstract class Manager {
@@ -17,11 +16,12 @@ public abstract class Manager {
             return;
         }
 
-        Expenses.expenses.clear();
+        expenses.clear();
+
         System.out.println("\nCleared all expenses");
     }
 
-    public static void deleteExpense(String description) throws ConcurrentModificationException {
+    public static void deleteExpense(String description) {
         if (expenses.isEmpty()) {
             System.out.println("No expenses logged\n");
             return;
@@ -49,7 +49,7 @@ public abstract class Manager {
             return;
         }
 
-        List<Expense> monthExpenses = expenses.stream().filter(expense -> expense.getMonth().substring(0,3).equalsIgnoreCase(month.substring(0,3))).toList();
+        List<Expense> monthExpenses = expenses.stream().filter(expense -> expense.getMonth().substring(0, 3).equalsIgnoreCase(month.substring(0, 3))).toList();
 
         if (monthExpenses.isEmpty()) {
             System.out.println("No expenses logged in this month\n");
