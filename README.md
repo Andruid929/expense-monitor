@@ -1,13 +1,19 @@
 # A "few" words
-Java front end is somewhat boring... No, DEFINITELY NOT complex and unappealing. It's just boring.
-This project is what happens when an aspiring backend developer (beginner) with subpar front end sklls decides to do a project.
-Using commands to run stuff is actually fun, new direction for projects. I wonder if incorporating Databases would be a fun thing...
-Something to consider... Enjoy!
+Java's front end is somewhat boring...
+No, DEFINITELY NOT complex and unappealing.
+It's just boring.
+This project is what happens when an aspiring backend developer
+(beginner) with subpar front end skills decides to do a project.
+Using commands to run stuff is actually fun, new direction for projects.
+I wonder if incorporating Databases would be a fun thing...
+Something to consider...
+Enjoy!
 
 ## Commands
-for (String command : List<String> c)... Whoops sorry, for each command listed here, typing the full command or the first letter should get you sorted.
+for (String command : List<String...
+Whoops sorry, for each command listed here, typing the full command or the first letter should get you sorted.
 If at any time during a prompt you want to cancel, `CANCEL` will do the trick, it has to be in full though.
-Commands are not case sensitive
+Commands are not case-sensitive
 
 ### Help
 `HELP`
@@ -15,8 +21,8 @@ This command will show you all the commands you can use with this program, simpl
 
 ### Adding a new expense
 `ADD`
-This will first ask you for the amount spent, the value here obviously has to be numerical and it can't be negative unless it's `-1` which will cancel adding this expense.
-You will then be asked to provide a description for this expense. This description is what you give when deleting expenses so try your best to make each one unique yeah?
+This will first ask you for the amount spent, the value here obviously has to be numerical, and it can't be negative unless it's `-1` which will cancel adding this expense.
+You will then be asked to provide a description for this expense. This description is what you give when deleting expenses, so try your best to make each one unique, yeah?
 If both these inputs are valid, you'll get a confirmation that the expense has been logged.
 
 ### Removing saved expenses
@@ -34,7 +40,7 @@ the expense was logged.
 
 ### Getting the total amount of money spent
 `TOTAL`
-This will give the all time total of expenses saved. 
+This will give the all-time total of expenses saved. 
 
 ### Clearing all expenses
 `CLEAR`
@@ -42,7 +48,7 @@ The proper way of erasing all saved expenses.
 
 ### Exiting the manager
 `EXIT`
-It's been fun, goodbye. Any changes made prior to exiting will only be in memory and will only be saved when you use this command so if your device shuts down, any changes made won't be saved to storage. After 3 seconds, saving will be completed and the program should automatically close.
+It's been fun, goodbye. Any changes made prior to exiting will only be in memory and will only be saved when you use this command, so if your device shuts down, any changes made won't be saved to storage. After 3 seconds, saving will be completed and the program should automatically close.
 
 ## How saving expenses works
 I did my best to ensure that saving worked across all operating systems, I mean, write once run anywhere right?
