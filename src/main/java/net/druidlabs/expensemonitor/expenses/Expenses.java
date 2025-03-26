@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class Expenses {
 
-    static final List<Expense> expenses = LoadExpenses.loadExpenses();
+    static final List<Expense> expenses = LoadExpenses.loadSaveFile();
 
     private Expenses() {}
 

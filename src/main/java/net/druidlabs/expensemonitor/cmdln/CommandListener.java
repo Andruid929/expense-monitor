@@ -22,7 +22,7 @@ public abstract class CommandListener {
         switch (command.toUpperCase()) {
             case "H", "HELP" -> printCommandList(scanner);
             case "A", "ADD" -> addExpense(scanner);
-            case "E", "EXIT" -> exitingMessage();
+            case "E", "EXIT" -> exitManager();
             case "M", "MON SUM" -> monthSummary(scanner);
             case "R", "REMOVE" -> removeExpense(scanner);
             case "T", "TOTAL" -> totalSpent(scanner);
@@ -33,7 +33,15 @@ public abstract class CommandListener {
     }
 
     private static void cleanExpenses(Scanner scanner) {
-        Manager.clearHistory();
+        System.out.println("\nAre you sure? Logged expenses will be gone for a long time (Forever)");
+
+        String response = scanner.next();
+
+        if (response.equalsIgnoreCase("Yes") || response.equalsIgnoreCase("Y")) {
+            Manager.clearHistory();
+        } else {
+            System.out.println("\nCancelled expense clearing");
+        }
 
         System.out.println();
         askForCommand();
@@ -55,7 +63,8 @@ public abstract class CommandListener {
         launch(scanner);
     }
 
-    private static void exitingMessage() {
+    @SuppressWarnings("BusyWait")
+    private static void exitManager() {
         System.out.print("\nExiting expense manager");
 
         try (ExecutorService service = Executors.newSingleThreadExecutor()) {

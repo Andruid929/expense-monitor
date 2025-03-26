@@ -12,10 +12,11 @@ import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FILE;
 
 public class LoadExpenses {
 
-    public static List<Expense> loadExpenses() {
-
+    @SuppressWarnings("unchecked")
+    public static List<Expense> loadSaveFile() {
         try (FileInputStream fis = new FileInputStream(SAVE_FILE);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
+
             return (List<Expense>) ois.readObject();
 
         } catch (IOException | ClassNotFoundException e) {

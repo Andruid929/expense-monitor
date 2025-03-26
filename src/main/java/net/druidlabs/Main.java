@@ -12,7 +12,6 @@ public class Main {
         System.out.println("Expense tracker");
         System.out.println("Enter a command to get started or enter 'HELP' or 'H' for a list of commands");
 
-
         CommandListener.launch(scanner);
     }
 

@@ -8,7 +8,7 @@ class LoadExpensesTest {
 
     @Test
     void readSer() {
-        assertEquals(4, LoadExpenses.loadExpenses().size());
+        assertEquals(4, LoadExpenses.loadSaveFile().size());
     }
 
 }
