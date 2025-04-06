@@ -23,6 +23,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.druidlabs</groupId>
+            <artifactId>ajse</artifactId>
+            <version>0.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>
