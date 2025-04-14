@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.TimeZone;
 
 public class Expense implements Serializable {
 
@@ -40,7 +41,7 @@ public class Expense implements Serializable {
 
         superscript = getSuperScript(day);
 
-        month = TimeFunctions.getMonth(Calendar.MONTH);
+        month = TimeFunctions.getMonth(date.getMonthValue() - 1);
 
         hour = time.getHour();
 
