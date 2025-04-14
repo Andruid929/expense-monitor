@@ -1,6 +1,5 @@
 package net.druidlabs.expensemonitor.io;
 
-import net.druidlabs.ajse.TextFileWriter;
 import net.druidlabs.expensemonitor.expenses.Expense;
 
 import java.io.FileInputStream;
