@@ -17,7 +17,7 @@ in the downloads folder.
 
 Now, you either open the current directory in your terminal or
 open the terminal and navigate to the folder with commands.
-Once you're in the folder containing the jar file, run `java -jar expense-monitor.jar`.
+Once you're in the folder containing the jar file, run `java -jar expense-monitor-1.0.jar`.
 If your jar file has a different name, make sure that name is what you pass in.
 
 ## Commands
