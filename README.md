@@ -9,6 +9,17 @@ I wonder if incorporating Databases would be a fun thing...
 Something to consider...
 Enjoy!
 
+# Launching
+This program is command based so you'll need a terminal to enter commands and get feedback.
+
+Once you have the project file set up and have the jar file, place the file anywhere you want, even there
+in the downloads folder.
+
+Now, you either open the current directory in your terminal or
+open the terminal and navigate to the folder with commands.
+Once you're in the folder containing the jar file, run `java -jar expense-monitor.jar`.
+If your jar file has a different name, make sure that name is what you pass in.
+
 ## Commands
 for (String command : List<String...
 Whoops sorry, for each command listed here, typing the full command or the first letter should get you sorted.
