@@ -9,7 +9,23 @@ import java.io.ObjectOutputStream;
 import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FILE;
 import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FOLDER;
 
+/**
+ * This class is responsible for saving the list of expenses.
+ *
+ * @author Andrew Jones
+ * @since 1.0
+ * @version 1.0
+ * @see LoadExpenses
+ * */
+
 public final class SaveExpenses {
+
+    /**
+     * Attempts to save the list of expenses by overwriting the save file.
+     *
+     * @since 1.0
+     * @throws IOException if any output error occurs.
+     * */
 
     public static void createSave() throws IOException {
         if (!SAVE_FOLDER.exists()) {
@@ -21,10 +37,6 @@ public final class SaveExpenses {
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(Expenses.getExpenses());
         }
-    }
-
-    static String formatDate(String fullDate, String month) {
-        return fullDate.substring(month.length() + 1);
     }
 
 }

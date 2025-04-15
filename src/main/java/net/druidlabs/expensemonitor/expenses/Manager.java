@@ -1,14 +1,42 @@
 package net.druidlabs.expensemonitor.expenses;
 
 import java.util.List;
+import net.druidlabs.expensemonitor.cmdln.CommandListener;
+
+/**
+ * This class is responsible for managing the expense list such as adding, removing and clearing.
+ *
+ * @author Andrew Jones
+ * @since 1.0
+ * @version 1.0
+ * @see CommandListener
+ * */
 
 public abstract class Manager {
 
+    /**
+     * Load up saved expenses if any.
+     * @since 1.0
+     * */
+
     private static final List<Expense> expenses = Expenses.getExpenses();
+
+    /**
+     * All this does is print feedback to the terminal as the actual logging is done in the {@link Expense} class.
+     *
+     * @param expense the expense to be added.
+     * @since 1.0
+     * */
 
     public static void increaseAmountSpent(Expense expense) {
         System.out.println("\nNew expense logged on " + expense.getDate() + " at " + expense.getTime());
     }
+
+    /**
+     * Clears all expenses from the list.
+     *
+     * @since 1.0
+     * */
 
     public static void clearHistory() {
         if (expenses.isEmpty()) {
@@ -20,6 +48,12 @@ public abstract class Manager {
 
         System.out.println("\nCleared all expenses");
     }
+
+    /**
+     * Removes a specific expense from the saved expense list.
+     *
+     * @param description any expense that has this description (if any) will be removed.
+     * */
 
     public static void deleteExpense(String description) {
         if (expenses.isEmpty()) {
@@ -34,6 +68,12 @@ public abstract class Manager {
         }
     }
 
+    /**
+     * Prints to the terminal all saved expenses.
+     *
+     * @since 1.0
+     * */
+
     public static void getAllExpenses() {
         if (expenses.isEmpty()) {
             System.out.println("No expenses logged\n");
@@ -42,6 +82,13 @@ public abstract class Manager {
 
         expenses.forEach(expense -> System.out.println("Expense: " + expense.amount() + "\nDescription: " + expense.description() + "\nDate: " + expense.getDate() + "\n"));
     }
+
+    /**
+     * Prints all expenses saved during the specified month.
+     *
+     * @param month any expense which was logged in this month will be printed out.
+     * @since 1.0
+     * */
 
     public static void getMonthExpenses(String month) {
         if (expenses.isEmpty()) {

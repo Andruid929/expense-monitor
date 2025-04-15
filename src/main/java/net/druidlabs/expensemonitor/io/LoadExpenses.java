@@ -10,7 +10,24 @@ import java.util.List;
 
 import static net.druidlabs.expensemonitor.io.IOConstants.SAVE_FILE;
 
+/**
+ * This class is what reads the save file to retrieve saved expenses.
+ *
+ * @author Andrew Jones
+ * @version 1.0
+ * @since 1.0
+ * @see SaveExpenses
+ * */
+
 public class LoadExpenses {
+
+    /**
+     * Attempts to read the save file for saved expenses.
+     * If the file does not exist or is corrupted, this will return an empty {@code List<Expense>}
+     *
+     * @return {@code List<Expense>} containing all saved expenses.
+     * @since 1.0
+     * */
 
     @SuppressWarnings("unchecked")
     public static List<Expense> loadSaveFile() {

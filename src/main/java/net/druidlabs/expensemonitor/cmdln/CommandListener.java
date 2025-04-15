@@ -1,6 +1,6 @@
 package net.druidlabs.expensemonitor.cmdln;
 
-import net.druidlabs.expensemonitor.calendar.TimeFunctions;
+import net.druidlabs.expensemonitor.calendar.MonthFunctions;
 import net.druidlabs.expensemonitor.expenses.Expense;
 import net.druidlabs.expensemonitor.expenses.Expenses;
 import net.druidlabs.expensemonitor.expenses.Manager;
@@ -14,7 +14,25 @@ import java.util.concurrent.*;
 
 import static net.druidlabs.expensemonitor.cmdln.Commands.*;
 
+/**
+ * Class responsible for handling commands and running tasks.
+ * Uses a {@code scanner} take user input.
+ *
+ * @author Andrew Jones
+ * @version 1.o
+ * @see Commands
+ * @see Manager
+ * @since 1.0
+ */
+
 public abstract class CommandListener {
+
+    /**
+     * Launch the command listener
+     *
+     * @param scanner scanner object to be used to take user input.
+     * @since 1.0
+     */
 
     public static void launch(Scanner scanner) {
         String command = scanner.next();
@@ -32,6 +50,13 @@ public abstract class CommandListener {
         }
     }
 
+    /**
+     * Clear out all saved expenses by calling List#clear on the list that holds all saved expenses.
+     *
+     * @param scanner scanner object to take user input.
+     * @since 1.0
+     */
+
     private static void cleanExpenses(Scanner scanner) {
         System.out.println("\nAre you sure? Logged expenses will be gone for a long time (Forever)");
 
@@ -48,6 +73,13 @@ public abstract class CommandListener {
         launch(scanner);
     }
 
+    /**
+     * Print all saved expenses to the terminal
+     *
+     * @param scanner scanner object to take user input.
+     * @since 1.0
+     */
+
     private static void allLoggedExpenses(Scanner scanner) {
         System.out.println();
         Manager.getAllExpenses();
@@ -56,12 +88,25 @@ public abstract class CommandListener {
         launch(scanner);
     }
 
+    /**
+     * Print the sum of all saved expenses.
+     *
+     * @param scanner scanner object to take user input.
+     * @since 1.0
+     */
+
     private static void totalSpent(Scanner scanner) {
         System.out.println("\nTotal spent: " + Expenses.getTotalAmountSpent() + "\n");
 
         askForCommand();
         launch(scanner);
     }
+
+    /**
+     * Save the changes made while the expense monitor was running, the only way to save the expenses as of {@code v1.0}.
+     *
+     * @since 1.0
+     */
 
     @SuppressWarnings("BusyWait")
     private static void exitManager() {
@@ -87,6 +132,13 @@ public abstract class CommandListener {
         }
     }
 
+    /**
+     * Remove a specified expense from the logs.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * */
+
     private static void removeExpense(Scanner scanner) {
         System.out.println("\nEnter description of the expense you want to remove");
 
@@ -108,6 +160,13 @@ public abstract class CommandListener {
         launch(scanner);
     }
 
+    /**
+     * Print all saved expenses logged within a specific month.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * */
+
     private static void monthSummary(Scanner scanner) {
         System.out.println("\nWhich month's expenses do you want to get?");
 
@@ -121,7 +180,7 @@ public abstract class CommandListener {
             launch(scanner);
         }
 
-        boolean isExistingMonth = TimeFunctions.getMonthsOfYearShort().stream().anyMatch(s -> month.substring(0, 3).toUpperCase().equalsIgnoreCase(s));
+        boolean isExistingMonth = MonthFunctions.getMonthsOfYearShort().stream().anyMatch(s -> month.substring(0, 3).toUpperCase().equalsIgnoreCase(s));
 
         if (isExistingMonth) {
             System.out.println();
@@ -134,6 +193,13 @@ public abstract class CommandListener {
         askForCommand();
         launch(scanner);
     }
+
+    /**
+     * Print out all registered commands to the terminal.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * */
 
     private static void printCommandList(Scanner scanner) {
         System.out.print("\n'" + HELP + "' or 'HELP' for a list of commands" + "\n");
@@ -148,6 +214,13 @@ public abstract class CommandListener {
         askForCommand();
         launch(scanner);
     }
+
+    /**
+     * Add an expense to the logs.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * */
 
     private static void addExpense(Scanner scanner) {
         System.out.print("\nEnter the amount spent: ");
@@ -191,12 +264,27 @@ public abstract class CommandListener {
         launch(scanner);
     }
 
+    /**
+     * Tell the user that the command entered is invalid.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * @param command recognised command.
+     * */
+
     private static void unknownCommand(String command, Scanner scanner) {
         System.out.println("\n'" + command + "' is not a registered command, type 'HELP' or 'H' for a list of registered commands.");
         System.out.println();
         askForCommand();
         launch(scanner);
     }
+
+    /**
+     * Check to see if the description passed is blank and keep asking until one is given or the operation is cancelled.
+     *
+     * @since 1.0
+     * @param scanner scanner object to take user input.
+     * */
 
     private static void checkIfBlank(String text, String printIfBlank, Scanner scanner) {
         while (text.isBlank()) {
@@ -211,6 +299,12 @@ public abstract class CommandListener {
             }
         }
     }
+
+    /**
+     * Ask the user to input a command
+     *
+     * @since 1.0
+     * */
 
     private static void askForCommand() {
         System.out.println("Type a command to continue");
