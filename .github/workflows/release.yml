@@ -3,7 +3,7 @@ name: Build and Release JAR
 on:
   push:
     tags:
-      - 'v*' #Trigger workflow when a new tag is created and pushed
+      - 'v*' # This workflow is triggered with every new pushed tag
 
 jobs:
   build:
@@ -16,8 +16,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '24' # Use Java 24
-          distribution: 'temurin' # Use Eclipse Temurin distribution
+          java-version: '24'
+          distribution: 'temurin'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
@@ -33,9 +33,15 @@ jobs:
       - name: Extract Version
         id: extract_version
         run: |
-            RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-            echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
-            echo "Extracted version: ${RELEASE_VERSION}"
+          RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
+          echo "${RELEASE_VERSION}" > release_version.txt
+
+      - name: Upload Release Version
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-version
+          path: release_version.txt
 
   release:
     needs: build
@@ -44,6 +50,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Download Release Version
+        uses: actions/download-artifact@v3
+        with:
+          name: release-version
+
+      - name: Set Release Version
+        run: |
+          RELEASE_VERSION=$(cat release_version.txt)
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         id: create_release
