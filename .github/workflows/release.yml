@@ -3,7 +3,7 @@ name: Build and Release JAR
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*' # This workflow is triggered with every new pushed tag
 
 jobs:
   build:
