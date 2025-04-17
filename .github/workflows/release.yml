@@ -73,6 +73,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/expense-monitor-${{ env.RELEASE_VERSION }}.jar
-          asset_name: expense-monitor-${{ env.RELEASE_VERSION }}.jar
+          asset_path: target/expense-monitor-${{ env.RELEASE_VERSION }}-release.jar
+          asset_name: expense-monitor-${{ env.RELEASE_VERSION }}-release.jar
           asset_content_type: application/java-archive
