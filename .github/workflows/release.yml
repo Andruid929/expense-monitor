@@ -43,6 +43,12 @@ jobs:
           name: release-version
           path: release_version.txt
 
+      - name: Upload JAR File
+        uses: actions/upload-artifact@v4
+        with:
+          name: jar-file
+          path: target/*.jar
+
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -60,6 +66,11 @@ jobs:
         run: |
           RELEASE_VERSION=$(cat release_version.txt)
           echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
+
+      - name: Download JAR File
+        uses: actions/download-artifact@v4
+        with:
+          name: jar-file
 
       - name: Create GitHub Release
         id: create_release
