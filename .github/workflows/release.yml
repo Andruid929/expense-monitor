@@ -33,8 +33,7 @@ jobs:
       - name: Extract Version
         id: extract_version
         run: |
-          export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
   release:
     needs: build
@@ -56,6 +55,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/expense-monitor-${{ env.VERSION }}.jar
-          asset_name: expense-monitor-${{ env.VERSION }}.jar
+          asset_path: target/expense-monitor-${{ env.RELEASE_VERSION }}.jar
+          asset_name: expense-monitor-${{ env.RELEASE_VERSION }}.jar
           asset_content_type: application/java-archive
