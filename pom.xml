@@ -39,6 +39,18 @@
                         </manifest>
                     </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-supplemental-artifact</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>release</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
