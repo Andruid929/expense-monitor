@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Main {
 
     /**
-     * The scanner that is in charge of all user input.
+     * The scanner that is in charge of all user inputs.
      *
      * @since 1.0
      * */
@@ -34,7 +34,7 @@ public class Main {
     }
 
     /**
-     * Prints opening message to the terminal and then launches the {@link CommandListener}
+     * Prints an opening message to the terminal and then launches the {@link CommandListener}
      *
      * @since 1.0
      * */

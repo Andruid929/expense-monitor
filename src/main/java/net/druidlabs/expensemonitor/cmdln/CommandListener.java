@@ -19,7 +19,7 @@ import static net.druidlabs.expensemonitor.cmdln.Commands.*;
  * Uses a {@code scanner} take user input.
  *
  * @author Andrew Jones
- * @version 1.o
+ * @version 1.0
  * @see Commands
  * @see Manager
  * @since 1.0
